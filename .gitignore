@@ -2,9 +2,10 @@
 *.gen.*
 .godot/
 
-# Ignore library files but not the gdextension file
+# Ignore library files
 /bin/**
 /project/addons/OpusGdextension/**
+!project/addons/OpusGdextension/Icons/**
 !project/addons/OpusGdextension/*.gdextension
 
 # Ignore scons database
