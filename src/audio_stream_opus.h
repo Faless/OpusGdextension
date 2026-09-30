@@ -1,6 +1,7 @@
 #pragma once
 
 #include "godot_cpp/classes/audio_stream.hpp"
+#include "godot_cpp/classes/audio_sample_playback.hpp"
 #include "godot_cpp/classes/audio_stream_playback_resampled.hpp"
 
 #include <opus/opusfile.h>

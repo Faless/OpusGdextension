@@ -36,7 +36,7 @@ void uninitialize_opus_gdextension_module(ModuleInitializationLevel p_level) {
 
 extern "C" {
 // Initialization
-GDExtensionBool GDE_EXPORT opus_gdextension_library_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
+GDExtensionBool GDE_EXPORT opus_gdextension_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
 	GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
 	init_obj.register_initializer(initialize_opus_gdextension_module);
 	init_obj.register_terminator(uninitialize_opus_gdextension_module);
