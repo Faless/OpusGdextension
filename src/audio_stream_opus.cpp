@@ -121,6 +121,9 @@ void AudioStreamPlaybackOpus::_seek(double p_time) {
 	ERR_FAIL_COND_MSG(error != 0, "Opus seek failed.");
 }
 
+void AudioStreamPlaybackOpus::_bind_methods() {
+}
+
 AudioStreamPlaybackOpus::~AudioStreamPlaybackOpus() {
 	if (opus_file) {
 		op_free(opus_file);
@@ -272,7 +275,17 @@ bool AudioStreamOpus::_is_monophonic() const {
 }
 
 TypedArray<Dictionary> AudioStreamOpus::_get_parameter_list() const {
-	return { Dictionary(PropertyInfo(Variant::BOOL, "looping", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CHECKABLE)) };
+	TypedArray<Dictionary> options;
+
+	Dictionary looping;
+	looping["name"] = "looping";
+	looping["default_value"] = false;
+	looping["property_hint"] = PROPERTY_HINT_NONE;
+	looping["hint_string"] = "2,32,or_greater";
+	looping["usage"] = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CHECKABLE;
+	options.push_back(looping);
+
+	return options;
 }
 
 void AudioStreamOpus::_bind_methods() {

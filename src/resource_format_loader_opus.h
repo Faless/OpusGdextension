@@ -18,7 +18,7 @@ public:
 	String _get_resource_type(const String &p_path) const override;
 	Variant _load(const String &p_path, const String &p_original_path, bool p_use_sub_threads, int32_t p_cache_mode) const override;
 
-	ResourceFormatLoaderOpus();
+	ResourceFormatLoaderOpus() {};
 };
 
 }

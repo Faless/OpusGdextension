@@ -1,5 +1,3 @@
-#include "godot_cpp/classes/resource_saver.hpp"
-
 #include <ogg/ogg.h>
 #include <opus/opus.h>
 
@@ -29,15 +27,13 @@ String ResourceFormatLoaderOpus::_get_resource_type(const String &p_path) const 
 Variant ResourceFormatLoaderOpus::_load(const String &p_path, const String &p_original_path, bool p_use_sub_threads, int32_t p_cache_mode) const {
 	Ref<AudioStreamOpus> opus_stream = AudioStreamOpus::load_from_file(p_path);
 	if (opus_stream.is_null()) {
-		return ERR_CANT_OPEN;
+		UtilityFunctions::printerr("Failed to load AudioStreamOpus at path: ", p_path);
+		return Variant();
 	}
 	return opus_stream;
 }
 
 void ResourceFormatLoaderOpus::_bind_methods() {
-}
-
-ResourceFormatLoaderOpus::ResourceFormatLoaderOpus() {
 }
 
 }

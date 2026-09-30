@@ -29,6 +29,9 @@ class AudioStreamPlaybackOpus : public AudioStreamPlaybackResampled {
 
 	const StringName SNAME_looping = "looping";
 
+protected:
+	static void _bind_methods();
+
 public:
 	virtual int32_t _mix_resampled(AudioFrame *p_buffer, int p_frames) override;
 	virtual float _get_stream_sampling_rate() const override;
