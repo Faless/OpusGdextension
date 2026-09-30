@@ -5,7 +5,7 @@ import sys
 from methods import print_error
 
 
-libname = "EXTENSION-NAME"
+libname = "OpusGdextension"
 projectdir = "project"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
@@ -37,8 +37,36 @@ Run the following command to download godot-cpp:
 
 env = SConscript("godot-cpp/SConstruct", {"api_version": 4.3, "env": env, "customs": customs})
 
-env.Append(CPPPATH=["src/"])
-sources = Glob("src/*.cpp")
+env.Append(CPPDEFINES=[
+    "HAVE_CONFIG_H",
+])
+
+env.Append(CPPPATH=[
+    "src/",
+    "#thirdparty/libopus/",
+    "#thirdparty/libopus/opus/",
+    "#thirdparty/libopus/src/",
+    "#thirdparty/libopus/celt/",
+    "#thirdparty/libopus/silk/",
+    "#thirdparty/libopus/silk/fixed/",
+    "#thirdparty/libopus/silk/float/",
+    "#thirdparty/libopusfile/",
+    "#thirdparty/libopusfile/opus/",
+    "#thirdparty/libopusfile/src/",
+])
+
+sources = Glob("src/*.cpp") \
+    + Glob("#thirdparty/libopus/src/*.c") \
+    + Glob("#thirdparty/libopus/celt/*.c") \
+    + Glob("#thirdparty/libopus/silk/*.c") \
+    + Glob("#thirdparty/libopusfile/src/*.c")
+
+# Remove /fp:strict flag
+if env["CCFLAGS"]:
+    if "/fp:strict" in env["CCFLAGS"]:
+        env["CCFLAGS"].remove("/fp:strict")
+        # Add /fp:precise flag
+        env.Append(CCFLAGS=["/fp:precise"])
 
 if env["target"] in ["editor", "template_debug"]:
     try:
