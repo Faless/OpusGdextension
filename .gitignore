@@ -3,10 +3,13 @@
 .godot/
 
 # Ignore library files
-/bin/**
-/project/addons/OpusGdextension/**
-!project/addons/OpusGdextension/Icons/**
-!project/addons/OpusGdextension/*.gdextension
+/bin/
+/project/addons/OpusGdextension/windows/
+/project/addons/OpusGdextension/linux/
+/project/addons/OpusGdextension/macos/
+/project/addons/OpusGdextension/android/
+/project/addons/OpusGdextension/ios/
+/project/addons/OpusGdextension/web/
 
 # Ignore scons database
 .sconsign*.dblite
