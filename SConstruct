@@ -35,7 +35,11 @@ Run the following command to download godot-cpp:
     git submodule update --init --recursive""")
     sys.exit(1)
 
-env = SConscript("godot-cpp/SConstruct", {"api_version": 4.3, "env": env, "customs": customs})
+env = SConscript("godot-cpp/SConstruct", {"api_version": 4.4, "env": env, "customs": customs})
+
+# Add WIN32 define on Windows (required by config.h)
+if env["platform"] == "windows":
+    env.Append(CPPDEFINES=["WIN32"])
 
 env.Append(CPPDEFINES=[
     "HAVE_CONFIG_H",
@@ -43,6 +47,8 @@ env.Append(CPPDEFINES=[
 
 env.Append(CPPPATH=[
     "src/",
+    "#thirdparty/libogg/",
+    "#thirdparty/libogg/ogg/",
     "#thirdparty/libopus/",
     "#thirdparty/libopus/opus/",
     "#thirdparty/libopus/src/",
@@ -56,9 +62,12 @@ env.Append(CPPPATH=[
 ])
 
 sources = Glob("src/*.cpp") \
+    + Glob("#thirdparty/libogg/*.c") \
+    + Glob("#thirdparty/libogg/ogg/*.c") \
     + Glob("#thirdparty/libopus/src/*.c") \
     + Glob("#thirdparty/libopus/celt/*.c") \
     + Glob("#thirdparty/libopus/silk/*.c") \
+    + Glob("#thirdparty/libopus/silk/float/*.c") \
     + Glob("#thirdparty/libopusfile/src/*.c")
 
 # Remove /fp:strict flag
@@ -70,7 +79,7 @@ if env["CCFLAGS"]:
 
 if env["target"] in ["editor", "template_debug"]:
     try:
-        doc_data = env.GodotCPPDocData("src/gen/doc_data.gen.cpp", source=Glob("doc_classes/*.xml"))
+        doc_data = env.GodotCPPDocData("src/gen/doc_data.gen.cpp", source=Glob("src/doc_classes/*.xml"))
         sources.append(doc_data)
     except AttributeError:
         print("Not including class reference as we're targeting a pre-4.3 baseline.")

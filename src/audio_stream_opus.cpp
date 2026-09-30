@@ -25,7 +25,10 @@ int32_t AudioStreamPlaybackOpus::_mix_resampled(AudioFrame *p_buffer, int p_fram
 		if (mixed < 0) {
 			// error
 			for (int i = p_frames - todo; i < p_frames; i++) {
-				p_buffer[i] = AudioFrame(0, 0);
+				AudioFrame audio_frame;
+				audio_frame.left = 0;
+				audio_frame.right = 0;
+				p_buffer[i] = audio_frame;
 			}
 			return p_frames - todo;
 		}
@@ -41,7 +44,10 @@ int32_t AudioStreamPlaybackOpus::_mix_resampled(AudioFrame *p_buffer, int p_fram
 				loops++;
 			} else {
 				for (int i = p_frames - todo; i < p_frames; i++) {
-					p_buffer[i] = AudioFrame(0, 0);
+					AudioFrame audio_frame;
+					audio_frame.left = 0;
+					audio_frame.right = 0;
+					p_buffer[i] = audio_frame;
 				}
 				active = false;
 				todo = 0;
