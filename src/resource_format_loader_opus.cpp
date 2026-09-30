@@ -33,7 +33,4 @@ Variant ResourceFormatLoaderOpus::_load(const String &p_path, const String &p_or
 	return opus_stream;
 }
 
-void ResourceFormatLoaderOpus::_bind_methods() {
-}
-
 }

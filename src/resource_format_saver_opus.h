@@ -10,7 +10,7 @@ class ResourceFormatSaverOpus : public ResourceFormatSaver {
 	GDCLASS(ResourceFormatSaverOpus, ResourceFormatSaver);
 
 protected:
-	static void _bind_methods();
+	static void _bind_methods() {}
 
 public:
 	PackedStringArray _get_recognized_extensions(const Ref<Resource> &p_resource) const override;

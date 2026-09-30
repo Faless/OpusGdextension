@@ -35,6 +35,4 @@ Error ResourceFormatSaverOpus::_save(const Ref<Resource> &p_resource, const Stri
 	return OK;
 }
 
-void ResourceFormatSaverOpus::_bind_methods() {
-}
 }
