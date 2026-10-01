@@ -5,6 +5,7 @@
 #include "godot_cpp/classes/editor_inspector.hpp"
 #include "godot_cpp/classes/editor_inspector_plugin.hpp"
 #include "godot_cpp/classes/editor_plugin.hpp"
+#include "godot_cpp/classes/audio_stream.hpp"
 #include "godot_cpp/classes/audio_stream_player.hpp"
 #include "godot_cpp/classes/button.hpp"
 #include "godot_cpp/classes/color_rect.hpp"
