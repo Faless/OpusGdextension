@@ -11,6 +11,25 @@ Opus GDExtension adds `AudioStreamOpus`, which is almost identical in features t
 - Load `.opus` files at runtime.
 - Play `.opus` files at runtime.
 
+## How to Use
+
+To convert a WAV file to Opus at 128 kbits/s, install [FFmpeg](https://ffmpeg.org) and run:
+```
+ffmpeg -i input.wav -c:a libopus -b:a 128k output.opus
+```
+
+## Recommended Bitrates
+
+Opus is transparent (perceptually lossless) at 128 kbits/s for music and 32 kbits/s mono for voice.
+
+If you're looking to save as much space as possible, Opus is very high quality at 96 kbits/s for music.
+
+| Format | Transparent Bitrate (Music) | Transparent Bitrate (Voice) |
+|---|---|---|
+| Opus | 128 kbits/s | 32 kbits/s mono |
+| Ogg Vorbis | 160 kbits/s | 64+ kbits/s mono |
+| MP3 | 192 kbits/s | 96+ kbits/s mono |
+
 ## Supported Platforms
 
 Opus GDExtension has a baseline of Godot 4.4 and aims to support every platform supported by Godot 4.4.
