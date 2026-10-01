@@ -277,12 +277,8 @@ bool AudioStreamOpus::_is_monophonic() const {
 TypedArray<Dictionary> AudioStreamOpus::_get_parameter_list() const {
 	TypedArray<Dictionary> options;
 
-	Dictionary looping;
-	looping["name"] = "looping";
-	looping["default_value"] = false;
-	looping["property_hint"] = PROPERTY_HINT_NONE;
-	looping["hint_string"] = "2,32,or_greater";
-	looping["usage"] = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CHECKABLE;
+	Dictionary looping = Dictionary(PropertyInfo(Variant::BOOL, "looping", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_CHECKABLE));
+	looping["default_value"] = Variant();
 	options.push_back(looping);
 
 	return options;
