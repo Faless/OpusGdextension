@@ -11,7 +11,7 @@ using namespace godot;
 namespace opus_gdextension {
 
 PackedStringArray ResourceFormatLoaderOpus::_get_recognized_extensions() const {
-	return { "opus" };
+	return { "oggopusstr_gdextension" };
 }
 
 bool ResourceFormatLoaderOpus::_handles_type(const StringName &p_type) const {
@@ -20,16 +20,10 @@ bool ResourceFormatLoaderOpus::_handles_type(const StringName &p_type) const {
 
 String ResourceFormatLoaderOpus::_get_resource_type(const String &p_path) const {
 	String extension = p_path.get_extension().to_lower();
-	if (extension == "opus") {
+	if (extension == "oggopusstr_gdextension") {
 		return "AudioStreamOpus";
 	}
 	return "";
-}
-
-int64_t ResourceFormatLoaderOpus::_get_resource_uid(const String &p_path) const {
-	// Do not generate an unnecessary `.uid` file, because the UID is already
-	// stored inside the `.import` file
-	return ResourceUID::INVALID_ID;
 }
 
 Variant ResourceFormatLoaderOpus::_load(const String &p_path, const String &p_original_path, bool p_use_sub_threads, int32_t p_cache_mode) const {
