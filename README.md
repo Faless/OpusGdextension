@@ -1,6 +1,8 @@
 # Opus GDExtension
 
-Import Opus audio in Godot 4.
+This addon lets you import Opus, a modern lossy audio encoding with excellent compression, in Godot 4.
+
+Opus GDExtension adds `AudioStreamOpus`, which is almost identical in features to the built-in `AudioStreamOggVorbis`.
 
 ## Features
 
