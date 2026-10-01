@@ -49,8 +49,8 @@ void uninitialize_opus_gdextension_module(ModuleInitializationLevel p_level) {
 		ResourceLoader::get_singleton()->remove_resource_format_loader(resource_format_loader_opus);
 		resource_format_loader_opus.unref();
 
-		ResourceSaver::get_singleton()->remove_resource_format_saver(resource_format_loader_opus);
-		resource_format_loader_opus.unref();
+		ResourceSaver::get_singleton()->remove_resource_format_saver(resource_format_saver_opus);
+		resource_format_saver_opus.unref();
 	}
 
 	if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
