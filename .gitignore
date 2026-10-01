@@ -4,12 +4,7 @@
 
 # Ignore library files
 /bin/
-/project/addons/OpusGdextension/windows/
-/project/addons/OpusGdextension/linux/
-/project/addons/OpusGdextension/macos/
-/project/addons/OpusGdextension/android/
-/project/addons/OpusGdextension/ios/
-/project/addons/OpusGdextension/web/
+/project/addons/OpusGdextension/bin/
 
 # Ignore scons database
 .sconsign*.dblite

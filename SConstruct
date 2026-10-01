@@ -95,7 +95,7 @@ library = env.SharedLibrary(
     source=sources,
 )
 
-copy = env.Install("{}/addons/OpusGdextension/{}/".format(projectdir, env["platform"]), library)
+copy = env.Install("{}/addons/OpusGdextension/bin/{}/".format(projectdir, env["platform"]), library)
 
 default_args = [library, copy]
 Default(*default_args)
