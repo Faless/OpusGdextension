@@ -1,3 +1,5 @@
+#include "godot_cpp/classes/resource_uid.hpp"
+
 #include <ogg/ogg.h>
 #include <opus/opus.h>
 
@@ -22,6 +24,12 @@ String ResourceFormatLoaderOpus::_get_resource_type(const String &p_path) const 
 		return "AudioStreamOpus";
 	}
 	return "";
+}
+
+int64_t ResourceFormatLoaderOpus::_get_resource_uid(const String &p_path) const {
+	// Do not generate an unnecessary `.uid` file, because the UID is already
+	// stored inside the `.import` file
+	return ResourceUID::INVALID_ID;
 }
 
 Variant ResourceFormatLoaderOpus::_load(const String &p_path, const String &p_original_path, bool p_use_sub_threads, int32_t p_cache_mode) const {
