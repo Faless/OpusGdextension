@@ -10,6 +10,9 @@ void EditorPluginOpus::_enter_tree() {
 	editor_import_plugin_opus.instantiate();
 	add_import_plugin(editor_import_plugin_opus);
 
+	editor_inspector_plugin_audio_stream_opus.instantiate();
+	add_inspector_plugin(editor_inspector_plugin_audio_stream_opus);
+
 	// Add icon for AudioStreamOpus
 	Ref<Theme> editor_theme = EditorInterface::get_singleton()->get_editor_theme();
 	if (editor_theme.is_valid()) {
@@ -23,6 +26,9 @@ void EditorPluginOpus::_enter_tree() {
 void EditorPluginOpus::_exit_tree() {
 	remove_import_plugin(editor_import_plugin_opus);
 	editor_import_plugin_opus.unref();
+
+	remove_inspector_plugin(editor_inspector_plugin_audio_stream_opus);
+	editor_inspector_plugin_audio_stream_opus.unref();
 }
 
 }

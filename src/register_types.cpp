@@ -11,6 +11,7 @@
 #include "resource_format_loader_opus.h"
 #include "resource_format_saver_opus.h"
 #include "editor_import_plugin_opus.h"
+#include "editor_inspector_plugin_audio_stream_opus.h"
 #include "editor_plugin_opus.h"
 
 using namespace godot;
@@ -35,6 +36,8 @@ void initialize_opus_gdextension_module(ModuleInitializationLevel p_level) {
 
 	if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
 		GDREGISTER_CLASS(EditorImportPluginOpus);
+		GDREGISTER_CLASS(EditorInspectorPluginAudioStreamOpusEditor);
+		GDREGISTER_CLASS(EditorInspectorPluginAudioStreamOpus);
 		GDREGISTER_CLASS(EditorPluginOpus);
 
 		EditorPlugins::add_by_type<EditorPluginOpus>();

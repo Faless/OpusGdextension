@@ -1,7 +1,9 @@
 #pragma once
 
+#include "godot_cpp/classes/editor_plugin.hpp"
+
 #include "editor_import_plugin_opus.h"
-#include <godot_cpp/classes/editor_plugin.hpp>
+#include "editor_inspector_plugin_audio_stream_opus.h"
 
 using namespace godot;
 
@@ -12,6 +14,7 @@ class EditorPluginOpus : public EditorPlugin {
 
 private:
 	Ref<EditorImportPluginOpus> editor_import_plugin_opus;
+	Ref<EditorInspectorPluginAudioStreamOpus> editor_inspector_plugin_audio_stream_opus;
 
 protected:
 	static void _bind_methods() {}
