@@ -3,12 +3,12 @@
 importer="OpusGdextensionImporter"
 type="AudioStreamOpus"
 uid="uid://7cbrmn0krlui"
-path="res://.godot/imported/sample1.opus-d7209dddec8d2b24f2916e30ec705be2.opus"
+path="res://.godot/imported/sample1.opus-d7209dddec8d2b24f2916e30ec705be2.oggopusstr_gdextension"
 
 [deps]
 
 source_file="res://samples/sample1.opus"
-dest_files=["res://.godot/imported/sample1.opus-d7209dddec8d2b24f2916e30ec705be2.opus"]
+dest_files=["res://.godot/imported/sample1.opus-d7209dddec8d2b24f2916e30ec705be2.oggopusstr_gdextension"]
 
 [params]
 

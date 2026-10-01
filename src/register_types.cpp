@@ -9,7 +9,6 @@
 
 #include "audio_stream_opus.h"
 #include "resource_format_loader_opus.h"
-#include "resource_format_saver_opus.h"
 #include "editor_import_plugin_opus.h"
 #include "editor_inspector_plugin_audio_stream_opus.h"
 #include "editor_plugin_opus.h"
@@ -18,20 +17,15 @@ using namespace godot;
 using namespace opus_gdextension;
 
 static Ref<ResourceFormatLoaderOpus> resource_format_loader_opus;
-static Ref<ResourceFormatSaverOpus> resource_format_saver_opus;
 
 void initialize_opus_gdextension_module(ModuleInitializationLevel p_level) {
 	if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
 		GDREGISTER_CLASS(AudioStreamPlaybackOpus);
 		GDREGISTER_CLASS(AudioStreamOpus);
 		GDREGISTER_CLASS(ResourceFormatLoaderOpus);
-		GDREGISTER_CLASS(ResourceFormatSaverOpus);
 
 		resource_format_loader_opus.instantiate();
 		ResourceLoader::get_singleton()->add_resource_format_loader(resource_format_loader_opus, true);
-
-		resource_format_saver_opus.instantiate();
-		ResourceSaver::get_singleton()->add_resource_format_saver(resource_format_saver_opus, true);
 	}
 
 	if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
@@ -48,9 +42,6 @@ void uninitialize_opus_gdextension_module(ModuleInitializationLevel p_level) {
 	if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
 		ResourceLoader::get_singleton()->remove_resource_format_loader(resource_format_loader_opus);
 		resource_format_loader_opus.unref();
-
-		ResourceSaver::get_singleton()->remove_resource_format_saver(resource_format_saver_opus);
-		resource_format_saver_opus.unref();
 	}
 
 	if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {

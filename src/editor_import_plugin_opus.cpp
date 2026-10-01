@@ -17,7 +17,7 @@ PackedStringArray EditorImportPluginOpus::_get_recognized_extensions() const {
 }
 
 String EditorImportPluginOpus::_get_save_extension() const {
-	return "opus";
+	return "oggopusstr_gdextension";
 }
 
 String EditorImportPluginOpus::_get_resource_type() const {
@@ -87,5 +87,13 @@ Error EditorImportPluginOpus::_import(const String &p_source_file, const String 
 	opus_stream->set_beat_count(beat_count);
 	opus_stream->set_bar_beats(bar_beats);
 
-	return ResourceSaver::get_singleton()->save(opus_stream, p_save_path + String(".") + _get_save_extension());
+	Ref<FileAccess> save_file = FileAccess::open(p_save_path + String(".") + _get_save_extension(), FileAccess::WRITE);
+	if (save_file.is_null()) {
+		return ERR_FILE_CANT_WRITE;
+	}
+	if (!save_file->store_buffer(opus_stream->get_data())) {
+		return ERR_FILE_CANT_WRITE;
+	}
+	save_file->close();
+	return OK;
 }

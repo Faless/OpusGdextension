@@ -3,12 +3,11 @@
 importer="OpusGdextensionImporter"
 type="AudioStreamOpus"
 uid="uid://dyu5ha7qqhumg"
-path="res://.godot/imported/Symphony No.6 (1st movement).opus-d0576bb84acb9144f9e233c23358b65d.opus"
+valid=false
 
 [deps]
 
 source_file="res://samples/Symphony No.6 (1st movement).opus"
-dest_files=["res://.godot/imported/Symphony No.6 (1st movement).opus-d0576bb84acb9144f9e233c23358b65d.opus"]
 
 [params]
 
