@@ -49,6 +49,8 @@ int32_t AudioStreamPlaybackOpus::_mix_resampled(AudioFrame *p_buffer, int p_fram
 					audio_frame.right = 0;
 					p_buffer[i] = audio_frame;
 				}
+				active = false;
+				todo = 0;
 				return 0;
 			}
 			mixed_was_zero = true;
