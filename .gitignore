@@ -4,7 +4,9 @@
 
 # Ignore library files
 /bin/
-/project/addons/OpusGdextension/bin/
+/project/addons/OpusGdextension/bin/**
+!project/addons/OpusGdextension/bin/OpusGdextension.gdextension
+!project/addons/OpusGdextension/bin/OpusGdextension.gdextension.uid
 
 # Ignore scons database
 .sconsign*.dblite

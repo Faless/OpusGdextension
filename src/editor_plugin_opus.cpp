@@ -12,15 +12,6 @@ void EditorPluginOpus::_enter_tree() {
 
 	editor_inspector_plugin_audio_stream_opus.instantiate();
 	add_inspector_plugin(editor_inspector_plugin_audio_stream_opus);
-
-	// Add icon for AudioStreamOpus
-	Ref<Theme> editor_theme = EditorInterface::get_singleton()->get_editor_theme();
-	if (editor_theme.is_valid()) {
-		Ref<Texture2D> icon_texture = ResourceLoader::get_singleton()->load("res://addons/OpusGdextension/icons/AudioStreamOpus.svg");
-		if (icon_texture.is_valid()) {
-			editor_theme->set_icon("AudioStreamOpus", "EditorIcons", icon_texture);
-		}
-	}
 }
 
 void EditorPluginOpus::_exit_tree() {
