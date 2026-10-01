@@ -30,7 +30,7 @@ Variant ResourceFormatLoaderOpus::_load(const String &p_path, const String &p_or
 	Ref<AudioStreamOpus> opus_stream = AudioStreamOpus::load_from_file(p_path);
 	if (opus_stream.is_null()) {
 		UtilityFunctions::printerr("Failed to load AudioStreamOpus at path: ", p_path);
-		return Variant();
+		return ERR_FILE_CANT_READ;
 	}
 	return opus_stream;
 }
