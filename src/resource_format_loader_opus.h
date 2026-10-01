@@ -9,6 +9,8 @@ namespace opus_gdextension {
 class ResourceFormatLoaderOpus : public ResourceFormatLoader {
 	GDCLASS(ResourceFormatLoaderOpus, ResourceFormatLoader);
 
+	const StringName SNAME_AudioStreamOpus = "AudioStreamOpus";
+
 protected:
 	static void _bind_methods() {}
 

@@ -11,16 +11,16 @@ using namespace godot;
 namespace opus_gdextension {
 
 PackedStringArray ResourceFormatLoaderOpus::_get_recognized_extensions() const {
-	return { "opus", "oggopusstr_gdextension" };
+	return { "opus" };
 }
 
 bool ResourceFormatLoaderOpus::_handles_type(const StringName &p_type) const {
-	return ClassDB::is_parent_class(p_type, "AudioStream");
+	return p_type == SNAME_AudioStreamOpus || ClassDB::is_parent_class(p_type, SNAME_AudioStreamOpus);
 }
 
 String ResourceFormatLoaderOpus::_get_resource_type(const String &p_path) const {
 	String extension = p_path.get_extension().to_lower();
-	if (extension == "opus" || extension == "oggopusstr_gdextension") {
+	if (extension == "opus") {
 		return "AudioStreamOpus";
 	}
 	return "";
