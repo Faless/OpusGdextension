@@ -91,11 +91,11 @@ suffix = env['suffix'].replace(".dev", "").replace(".universal", "")
 lib_filename = "{}{}{}{}".format(env.subst('$SHLIBPREFIX'), libname, suffix, env.subst('$SHLIBSUFFIX'))
 
 library = env.SharedLibrary(
-    "bin/addons/{}/{}".format(libname, lib_filename),
+    "bin/addons/{}/lib/{}".format(libname, lib_filename),
     source=sources,
 )
 ext = env.Substfile(
-    "bin/addons/{}/lib/{}.gdextension".format(libname, libname),
+    "bin/addons/{}/{}.gdextension".format(libname, libname),
     "#misc/cfg.gdextension", SUBST_DICT={"LIBGDEXTENSION": lib_filename},
 )
 
