@@ -1,6 +1,6 @@
 [configuration]
 
-entry_symbol = "avif_extension_init"
+entry_symbol = "ENTRYPOINT"
 compatibility_minimum = "4.3"
 
 [libraries]

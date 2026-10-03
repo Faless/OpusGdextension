@@ -96,7 +96,7 @@ library = env.SharedLibrary(
 )
 ext = env.Substfile(
     "bin/addons/{}/{}.gdextension".format(libname, libname),
-    "#misc/cfg.gdextension", SUBST_DICT={"LIBGDEXTENSION": lib_filename},
+    "#misc/cfg.gdextension", SUBST_DICT={"LIBGDEXTENSION": "lib" + libname, "ENTRYPOINT": "opus_gdextension_init"},
 )
 
 copy = env.Install("{}/addons/OpusGdextension/bin/{}/".format(projectdir, env["platform"]), library)
