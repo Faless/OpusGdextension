@@ -15,10 +15,10 @@ jobs:
         # See https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow
         target:
           [
-            { platform: linux, arch: x86_64, os: ubuntu-22.04 },
-            { platform: linux, arch: x86_32, os: ubuntu-22.04 },
-            { platform: linux, arch: arm64, os: ubuntu-22.04-arm },
-            { platform: linux, arch: arm32, os: ubuntu-22.04-arm },
+            { platform: linux, arch: x86_64, os: ubuntu-22.04, buildroot: 'x86_64-godot-linux-gnu_sdk-buildroot' },
+            { platform: linux, arch: x86_32, os: ubuntu-22.04, buildroot: 'i686-godot-linux-gnu_sdk-buildroot' },
+            { platform: linux, arch: arm64, os: ubuntu-22.04, buildroot: 'aarch64-godot-linux-gnu_sdk-buildroot' },
+            { platform: linux, arch: arm32, os: ubuntu-22.04, buildroot: 'arm-godot-linux-gnueabihf_sdk-buildroot' },
             { platform: windows, arch: x86_64, os: windows-latest },
             { platform: windows, arch: x86_32, os: windows-latest },
             { platform: windows, arch: arm64, os: windows-latest },
@@ -41,18 +41,34 @@ jobs:
         with:
           submodules: true
 
-      # Add linux x86_32 toolchain
-      - name: Install multilib support
-        if: ${{ matrix.target.platform == 'linux' && matrix.target.arch == 'x86_32' }}
-        run: |
-          sudo apt-get update && sudo apt-get install -y gcc-multilib g++-multilib
-
       # Setup dependencies
       - name: Setup godot-cpp
         uses: ./godot-cpp/.github/actions/setup-godot-cpp
         with:
           platform: ${{ matrix.target.platform }}
           em-version: 3.1.62
+
+      # Restore godot linux toolchain
+      - name: Setup Linux buildroot toolchain cache
+        if: ${{ matrix.target.platform == 'linux' }}
+        uses: actions/cache@v5
+        with:
+          path: |
+            ${{ matrix.buildroot }}.tar.bz2
+          key: linux-${{ matrix.buildroot }}-buildroot
+
+      # Add godot linux toolchain
+      - name: Setup Linux toolchains
+        if: ${{ matrix.target.platform == 'linux' }}
+        run: |
+          if [ ! -f ${{ matrix.target.buildroot }}.tar.bz2 ]; then
+            wget https://github.com/godotengine/buildroot/releases/download/godot-2026.05.x-1/${{ matrix.target.buildroot }}.tar.bz2
+          fi
+          tar -xjf ${{ matrix.target.buildroot }}.tar.bz2
+          ${{ matrix.target.buildroot }}/relocate-sdk.sh
+          rm ${{ matrix.target.buildroot }}/bin/cmake
+          echo "$GITHUB_WORKSPACE/${{ matrix.target.buildroot }}/bin" >> $GITHUB_PATH
+          echo "PKG_CONFIG=$GITHUB_WORKSPACE/${{ matrix.target.buildroot }}/share/pkgconfig/" >> $GITHUB_ENV
 
       # Build GDExtension (with caches)
 
@@ -62,7 +78,7 @@ jobs:
           scons-cache: ${{ github.workspace }}/.scons-cache/
           cache-name: ${{ matrix.target.platform }}_${{ matrix.target.arch }}_${{ matrix.float-precision }}_${{ matrix.target-type }}
 
-      - name: Build GDExtension Debug Build
+      - name: Build GDExtension Build
         shell: sh
         env:
           SCONS_CACHE: ${{ github.workspace }}/.scons-cache/
