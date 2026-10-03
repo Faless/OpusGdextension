@@ -1,0 +1,30 @@
+{
+	"enabled_classes": [
+		"AudioFrame",
+		"AudioStream",
+		"AudioStreamPlaybackResampled",
+		"AudioSamplePlayback",
+		"AudioStreamPlayer",
+		"Button",
+		"ColorRect",
+		"EditorImportPlugin",
+		"EditorInterface",
+		"EditorInspector",
+		"EditorInspectorPlugin",
+		"EditorPlugin",
+		"EditorSettings",
+		"Font",
+		"HBoxContainer",
+		"Label",
+		"OS",
+		"RenderingServer",
+		"ResourceFormatLoader",
+		"ResourceFormatSaver",
+		"ResourceLoader",
+		"ResourceSaver",
+		"ResourceUID",
+		"Texture2D",
+		"Theme",
+		"VBoxContainer"
+	]
+}

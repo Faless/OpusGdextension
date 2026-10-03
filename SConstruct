@@ -91,11 +91,15 @@ suffix = env['suffix'].replace(".dev", "").replace(".universal", "")
 lib_filename = "{}{}{}{}".format(env.subst('$SHLIBPREFIX'), libname, suffix, env.subst('$SHLIBSUFFIX'))
 
 library = env.SharedLibrary(
-    "bin/{}/{}".format(env['platform'], lib_filename),
+    "bin/addons/{}/{}".format(libname, lib_filename),
     source=sources,
+)
+ext = env.Substfile(
+    "bin/addons/{}/lib/{}.gdextension".format(libname, libname),
+    "#misc/cfg.gdextension", SUBST_DICT={"LIBGDEXTENSION": lib_filename},
 )
 
 copy = env.Install("{}/addons/OpusGdextension/bin/{}/".format(projectdir, env["platform"]), library)
 
-default_args = [library, copy]
+default_args = [library, ext, copy]
 Default(*default_args)
