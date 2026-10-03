@@ -207,7 +207,7 @@ jobs:
 
       - name: Bundle licenses.
         run: |
-          cp LICENSE.mv artifacts/LICENSE.OpusGdextension
+          cp LICENSE.md artifacts/LICENSE.OpusGdextension
           cp thirdparty/libogg/COPYING artifacts/LICENSE.libogg
           cp thirdparty/libopus/COPYING artifacts/LICENSE.libopus
           cp thirdparty/libopusfile/COPYING artifacts/LICENSE.libopusfile
